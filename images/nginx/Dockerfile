@@ -26,7 +26,6 @@ RUN wget -O - http://dl.hhvm.com/conf/hhvm.gpg.key | apt-key add -
 RUN echo deb http://dl.hhvm.com/ubuntu trusty main | tee /etc/apt/sources.list.d/hhvm.list
 RUN apt-get update
 RUN apt-get install -y hhvm
-RUN /usr/share/hhvm/install_fastcgi.sh
 
 # Create required directories
 RUN mkdir -p /var/log/supervisor
