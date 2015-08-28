@@ -49,4 +49,3 @@ EXPOSE 80 9000
 RUN sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php5/fpm/php-fpm.conf
 
 CMD ["/usr/bin/supervisord"]
-
