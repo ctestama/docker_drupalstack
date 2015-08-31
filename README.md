@@ -19,15 +19,12 @@ A modified phpstack capable of running in OSX with docker-machine. You can find 
 * [Docker Compose](http://docs.docker.com/compose/)
 * [VirtualBox](https://www.virtualbox.org/) (optional)
 
-### Instructions for docker-machine
+### Instructions
 
 ```sh
 # Clone the repository
 $ git clone ctestama/sweetstack
 $ cd sweetstack
-
-# (Optional) Boot up a CoreOS box
-$ vagrant up
 
 # Boot up the Docker containers
 $ docker-compose up
