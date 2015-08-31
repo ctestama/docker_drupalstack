@@ -1,6 +1,8 @@
 # Sweetstack
 
-A modified phpstack capable of running in OSX with docker-machine. You can find the original project at https://github.com/kasperisager/phpstack
+A modified PHPStack capable of running in OSX with docker-machine. You can find the original phpstack project at https://github.com/kasperisager/phpstack
+
+A huge thanks to kasperisager for the inspiration and great work in putting this together.
 
 ## What's inside
 
@@ -10,8 +12,6 @@ A modified phpstack capable of running in OSX with docker-machine. You can find 
 * [HHVM](http://www.hhvm.com/)
 * [Memcached](http://memcached.org/)
 * [Redis](http://redis.io/)
-
-## Getting started
 
 ### Requirements
 
