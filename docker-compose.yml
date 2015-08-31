@@ -8,22 +8,34 @@ web:
     - memcached:memcached
     - redis:redis
   volumes:
-    - www:/var/www
-    - sites:/etc/nginx/sites-enabled 
+    - ./www:/var/www
+    - ./sites:/etc/nginx/sites-enabled
 
 mysql:
-  image: tutum/mysql
+  #image: tutum/mysql
+  build: images/osx_docker
   ports:
     - "3306:3306"
+  volumes:
+    - ./mysql:/var/lib/mysql
   environment:
-    MYSQL_PASS: password
+    MYSQL_ADMIN_PASS: password
+
+
+#memcached:
+#  image: tutum/memcached
+#  ports:
+#    - "11211:11211"
+#  environment:
+#    MEMCACHED_PASS: password
 
 memcached:
-  image: tutum/memcached
+  build: images/memcached
   ports:
     - "11211:11211"
-  environment:
-    MEMCACHED_PASS: password
+#  environment:
+#    MEMCACHED_PASS: password
+
 
 redis:
   image: tutum/redis
@@ -31,4 +43,3 @@ redis:
     - "6379:6379"
   environment:
     REDIS_PASS: password
-
