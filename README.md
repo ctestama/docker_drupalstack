@@ -1,11 +1,9 @@
-# PHPStack
+# Sweetstack
 
-A modified phpstack, capable of running in OSX with docker-machine. 
+A modified phpstack capable of running in OSX with docker-machine. You can find the original project at https://github.com/kasperisager/phpstack
 
 ## What's inside
 
-* [CoreOS](https://coreos.com/) (optional)
-*
 * [Nginx](http://nginx.org/)
 * [MySQL](http://www.mysql.com/)
 * [PHP-FPM](http://php-fpm.org/)
@@ -19,15 +17,14 @@ A modified phpstack, capable of running in OSX with docker-machine.
 
 * [Docker](https://docker.com/)
 * [Docker Compose](http://docs.docker.com/compose/)
-* [Vagrant](http://www.vagrantup.com/) (optional)
 * [VirtualBox](https://www.virtualbox.org/) (optional)
 
 ### Instructions for docker-machine
 
 ```sh
 # Clone the repository
-$ git clone ctestama/phpstack
-$ cd phpstack
+$ git clone ctestama/sweetstack
+$ cd sweetstack
 
 # (Optional) Boot up a CoreOS box
 $ vagrant up
@@ -37,4 +34,4 @@ $ docker-compose up
 ```
 
 ---
-Copyright &copy; 2014-2015 [Kasper Kronborg Isager](http://github.com/kasperisager). Licensed under the terms of the [MIT License](LICENSE.md).
+Licensed under the terms of the [MIT License](LICENSE.md).
