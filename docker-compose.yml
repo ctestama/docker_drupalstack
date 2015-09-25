@@ -12,30 +12,19 @@ web:
     - ./sites:/etc/nginx/sites-enabled
 
 mysql:
-  #image: tutum/mysql
-  build: images/osx_docker
+  image: dgraziotin/mysql
   ports:
     - "3306:3306"
-  volumes:
-    - ./mysql:/var/lib/mysql
+# Uncomment to persist database to /mysql directory    
+#  volumes:
+#    - ./mysql:/var/lib/mysql
   environment:
     MYSQL_ADMIN_PASS: password
-
-
-#memcached:
-#  image: tutum/memcached
-#  ports:
-#    - "11211:11211"
-#  environment:
-#    MEMCACHED_PASS: password
 
 memcached:
   build: images/memcached
   ports:
     - "11211:11211"
-#  environment:
-#    MEMCACHED_PASS: password
-
 
 redis:
   image: tutum/redis
