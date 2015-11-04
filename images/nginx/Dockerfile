@@ -61,7 +61,7 @@ RUN apt-get clean -y
 RUN pear channel-discover pear.drush.org 
 RUN pear install drush/drush
 
-# Add configuration files
+# Add configuration filess
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD php.ini /etc/php5/fpm/conf.d/40-custom.ini
 ADD server.ini /etc/hhvm/server.ini
