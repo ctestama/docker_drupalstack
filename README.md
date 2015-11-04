@@ -17,7 +17,7 @@ The NGINX image Dockerfile has also been modified to install Drush, and Oracle O
 
 ### Requirements
 
-* [Docker](https://docker.com/)
+* [Docker](https://docker.com/), (Docker toolkit in OSX)
 * [Docker Compose](http://docs.docker.com/compose/)
 ```
 
