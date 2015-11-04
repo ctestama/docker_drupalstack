@@ -1,4 +1,4 @@
-# Sweetstack
+# Docker DrupalStack
 
 A modified PHPStack capable of running in OSX with docker-machine, forked from https://github.com/kasperisager/phpstack
 
@@ -17,7 +17,6 @@ This version has been reduced from the original to only the esential components 
 
 * [Docker](https://docker.com/)
 * [Docker Compose](http://docs.docker.com/compose/)
-* [VirtualBox](https://www.virtualbox.org/) (optional)
 ```
 
 ---
