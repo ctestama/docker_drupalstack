@@ -3,7 +3,7 @@ FROM tutum/nginx:latest
 #ENV DEBIAN_FRONTEND=noninteractive
 
 # Only use stable sources
-RUN rm -rf /etc/apt/sources.list.d/proposed.list
+# RUN rm -rf /etc/apt/sources.list.d/proposed.list
 
 # Install packages
 RUN apt-get update
