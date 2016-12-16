@@ -4,22 +4,24 @@ web:
     - "80:80"
     - "9000:9000"
   links:
-    - mysql:mysql
+    - mariadb:mariadb
     - memcached:memcached
     - redis:redis
   volumes:
     - ./www:/var/www
     - ./sites:/etc/nginx/sites-enabled
 
-mysql:
-  image: dgraziotin/mysql
+mariadb:
+  image: mariadb:latest
   ports:
     - "3306:3306"
-# Uncomment to persist database to /mysql directory    
-#  volumes:
-#    - ./mysql:/var/lib/mysql
+  #volumes:
+  #  - ./mysql/mysql:/var/lib/mysql
+  #  - ./mysql/conf.d:/etc/mysql/conf.d
   environment:
-    MYSQL_ADMIN_PASS: password
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_PASSWORD: password
+    MYSQL_USER: admin
 
 memcached:
   build: images/memcached
