@@ -23,7 +23,9 @@ RUN apt-get install -y \
   php-pear \
   php7.0-ldap \
   unzip \
-  nginx
+  nginx \
+  openssh-server
+
 
 
 # installs add-apt-repository
