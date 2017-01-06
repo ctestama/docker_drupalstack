@@ -6,10 +6,12 @@ To Use:
 -------
 
 Mac OSX
+
 1. Install Docker for Mac or docker-machine
 2. cd into the project root and run 'docker-compose up'
 
 Linux
+
 1. Install Docker
 2. cd into the project root and run 'docker-compose up'
 
