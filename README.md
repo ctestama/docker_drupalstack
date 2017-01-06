@@ -24,9 +24,9 @@ Linux
 
 ### Requirements
 
-* [Docker](https://docker.com/), (Docker toolkit in OSX)
+* [Docker](https://docker.com/)
 * [Docker Compose](http://docs.docker.com/compose/)
-```
+
 
 ---
 Licensed under the terms of the [MIT License](LICENSE.md).
