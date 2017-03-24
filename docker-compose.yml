@@ -3,7 +3,6 @@ web:
   ports:
     - "80:80"
     - "9000:9000"
-    - "9099:22"
   links:
     - mariadb:mariadb
     - memcached:memcached
@@ -11,6 +10,7 @@ web:
   volumes:
     - ./www:/var/www
     - ./sites:/etc/nginx/sites-enabled
+    - ./php:/etc/php/7.0/fpm
 
 mariadb:
   image: mariadb:latest
