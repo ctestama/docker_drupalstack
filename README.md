@@ -29,7 +29,7 @@ Setting up a local Drupal site installation:
 4. Create a database for the site 
 
 ```
-docker exec dstack_mariadb_1 mysql -e "CREATE DATABASE webspark_drupal" -ppassword
+docker exec dstack_mariadb_1 mysql -e "CREATE DATABASE <database-name>" -ppassword
 ```
 
 From here you should be able to do a clean install of the site, or import an existing database. Just make sure that you use the MariaDB container name for the hostname in your mysql configuration. Here's an example from settings.php:
