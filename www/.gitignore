@@ -3,3 +3,4 @@
 !default
 !default/*
 !logs
+!logs/nginx
