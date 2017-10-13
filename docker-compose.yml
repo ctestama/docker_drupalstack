@@ -1,16 +1,26 @@
-web:
+webserver:
   build: images/nginx
   ports:
     - "80:80"
     - "9000:9000"
+    - "9099:22"
   links:
     - mariadb:mariadb
     - memcached:memcached
     - redis:redis
+    - selenium_server:selenium_server
   volumes:
     - ./www:/var/www
     - ./sites:/etc/nginx/sites-enabled
     - ./php:/etc/php/7.0/fpm
+
+selenium_server:
+  image: selenium/standalone-chrome-debug:2.53.1
+  ports:
+    - "4444:4444"
+    - "5900:5900"
+  environment:
+    HUB_ENV_no_proxy:
 
 mariadb:
   image: mariadb:latest
