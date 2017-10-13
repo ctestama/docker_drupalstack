@@ -18,6 +18,7 @@ server {
     allow all;
     log_not_found off;
     access_log off;
+    access_log off;
   }
 
   # Very rarely should these ever be accessed outside of your lan

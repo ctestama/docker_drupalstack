@@ -3,10 +3,8 @@ FROM ubuntu:latest
 #ENV DEBIAN_FRONTEND=noninteractive
 
 # Install packages
-RUN apt-get update
+RUN apt-get update -y
 RUN apt-get install -y \
-  supervisor \
-  curl \
   vim \
   wget \
   php-fpm \
@@ -22,7 +20,9 @@ RUN apt-get install -y \
   unzip \
   nginx \
   openssh-server \
-  rsync
+  rsync \
+  supervisor \
+  curl
 
 
 # installs add-apt-repository
