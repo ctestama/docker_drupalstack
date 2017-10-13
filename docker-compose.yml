@@ -21,7 +21,7 @@ webserver:
 #    - "5900:5900"
 #  environment:
 #    HUB_ENV_no_proxy:
-# Uncomment to run Selenium Server standalone Chrome debug
+# Uncomment above lines to run Selenium Server standalone Chrome debug
 # If trouble starting up, see issue:  https://github.com/SeleniumHQ/docker-selenium/issues/91
 
 
