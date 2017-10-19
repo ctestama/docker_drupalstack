@@ -53,6 +53,43 @@ $databases = array (
 
 ```
 
+
+## Useful BASH aliases and function
+```
+# set these equal to the web and selenium container names (execute 'docker ps -a' to list containers)
+export DWEB=dstack_webserver_1
+export DSEL=dstack_selenium_server_1
+
+#stop all containers
+alias dstop='docker stop $(docker ps -a -q)'
+
+#remove all containers
+alias dremove='docker rm $(docker ps -a -q)'
+
+#remove all images
+alias drmi='docker rmi $(docker images -q)'
+
+#ssh into the web container
+alias dssh='docker exec -it $DWEB bash'
+
+#ssh into the selenium container
+alias dselssh='docker exec -it $DSEL bash'
+
+# add entry to container host file
+# arg 1 - container name
+# arg 2 - ip address
+# arg 3 - hostname
+function add_chost() {
+  docker exec $1 /bin/sh -c "echo \"$2 $3\" >> /etc/hosts"
+}
+
+# returns the ip address of the container
+# arg 1 - container name
+function get_cip() {
+  docker exec $1 hostname -i;
+}
+```
+
 ## What's inside
 
 * [Nginx](http://nginx.org/)
@@ -65,6 +102,8 @@ $databases = array (
 
 * [Docker](https://docker.com/)
 * [Docker Compose](http://docs.docker.com/compose/)
+
+
 
 
 ---
