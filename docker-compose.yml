@@ -21,6 +21,9 @@ selenium_server:
     - "5900:5900"
   environment:
     HUB_ENV_no_proxy:
+# Comment out above lines if Selenium server not needed
+# If trouble starting up, see issue:  https://github.com/SeleniumHQ/docker-selenium/issues/91
+
 
 mariadb:
   image: mariadb:latest
