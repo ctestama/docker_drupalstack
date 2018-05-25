@@ -1,0 +1,14 @@
+version: "2"
+options:
+
+  # optional, activate this if you need to debug something, default is false
+  # IMPORTANT: do not run stable with this, it creates a memory leak, turn off verbose when you are done testing
+  verbose: false
+syncs:
+  #IMPORTANT: ensure this name is unique and does not match your other application container name
+  webserver-sync: #tip: add -sync and you keep consistent names as a convention
+    src: './www/'
+    sync_host_ip: 'auto'
+    sync_host_port: 10872
+    sync_strategy: 'rsync'
+    sync_excludes: ['.bin', 'vendor', '/bin', 'behat']

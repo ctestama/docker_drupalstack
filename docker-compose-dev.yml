@@ -13,7 +13,7 @@ services:
       - node:node
       # - selenium_server:selenium_server
     volumes:
-      - ./www:/var/www
+      - webserver-sync:/var/www:nocopy
       - ./sites:/etc/nginx/sites-enabled
       - ./php:/etc/php/7.0/fpm
 
@@ -31,9 +31,6 @@ services:
     image: mariadb:latest
     ports:
       - "3306:3306"
-    #volumes:
-    #  - ./mysql/mysql:/var/lib/mysql
-    #  - ./mysql/conf.d:/etc/mysql/conf.d
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_PASSWORD: password
@@ -64,3 +61,7 @@ services:
       - "3000:3000"
       - "5000:5000"
     command: ['npm', 'start']
+# that the important thing
+volumes:
+  webserver-sync:
+    external: true

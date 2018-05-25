@@ -1,7 +1,7 @@
 server {
   listen *:80;
 
-  server_name           default;
+  server_name default;
   client_max_body_size 80m;
 
   root /var/www/default;
