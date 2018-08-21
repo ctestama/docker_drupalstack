@@ -13,9 +13,9 @@ services:
       - node:node
       # - selenium_server:selenium_server
     volumes:
-      - ./www:/var/www
-      - ./sites:/etc/nginx/sites-enabled
-      - ./php:/etc/php/7.0/fpm
+      - ./www:/var/www:delegated
+      - ./sites:/etc/nginx/sites-enabled:delegated
+      - ./php:/etc/php/7.0/fpm:delegated
 
   #selenium_server:
   #  image: selenium/standalone-chrome-debug:2.53.1
@@ -58,9 +58,9 @@ services:
     environment:
       - NODE_ENV=development
     volumes:
-      - ./node/unity:/home/node/app
+      - ./node/unity:/home/node/app:delegated
     ports:
       - "8081:8081"
       - "3000:3000"
       - "5000:5000"
-    command: ['npm', 'start']
+    command: ['npm', 'start:dev']
