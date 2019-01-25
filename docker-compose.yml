@@ -63,4 +63,4 @@ services:
       - "8081:8081"
       - "3000:3000"
       - "5000:5000"
-    command: ['npm', 'start:dev']
+    command: ['npm', 'start']

@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:xenial        
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install packages
@@ -8,15 +8,16 @@ RUN apt-get install -y \
   wget \
   php-fpm \
   php-mysql \
-  php7.2-gd \
-  php7.2-memcached \
-  php7.2-curl \
-  php7.2-xdebug \
-  php7.2-dev \
+  php7.0-gd \
+  php-memcached \
+  php7.0-curl \
+  php-xdebug \
+  php7.0-dev \
+  php7.0-mbstring \
   php-pear \
   build-essential \
   libaio1 \
-  php7.2-ldap \
+  php7.0-ldap \
   unzip \
   nginx \
   openssh-server \
@@ -56,21 +57,21 @@ RUN apt-get clean -y
 
 # Add configuration filess
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD php.ini /etc/php/7.2/fpm/conf.d/40-custom.ini
+ADD php.ini /etc/php/7.0/fpm/conf.d/40-custom.ini
 ADD startup.sh /opt/startup.sh
 
 # For supervisor, don't daemonize php-fpm
-RUN sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php/7.2/fpm/php-fpm.conf
+RUN sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php/7.0/fpm/php-fpm.conf
 
 # Copy the default php-fpm configs to temp directory, so that we can 
 # copy them back after mounting the ./php directory
-RUN cp -r /etc/php/7.2/fpm /tmp/fpm
+RUN cp -r /etc/php/7.0/fpm /tmp/fpm
 
 # Expose volumes
-VOLUME ["/etc/php/7.2/fpm", "/var/www", "/etc/nginx/sites-enabled"]
+VOLUME ["/etc/php/7.0/fpm", "/var/www", "/etc/nginx/sites-enabled"]
 
 # Needed for supervisor to startup
-RUN service php7.2-fpm start
+RUN service php7.0-fpm start
 
 # Run our startup script
 CMD ["/bin/bash", "/opt/startup.sh"]
