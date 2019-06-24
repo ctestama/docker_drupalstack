@@ -14,7 +14,7 @@ services:
     volumes:
       - ./www:/var/www:delegated
       - ./sites:/etc/nginx/sites-enabled:delegated
-      - ./php:/etc/php/7.0/fpm:delegated
+      - ./php:/etc/php/7.2/fpm:delegated
 
   #selenium_server:
   #  image: selenium/standalone-chrome-debug:2.53.1
