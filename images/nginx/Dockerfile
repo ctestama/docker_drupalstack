@@ -66,6 +66,7 @@ RUN composer global require drush/drush
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD php.ini /etc/php/7.2/fpm/conf.d/40-custom.ini
 ADD startup.sh /opt/startup.sh
+ADD .bashrc /root/.bashrc
 
 # For supervisor, don't daemonize php-fpm
 RUN sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php/7.2/fpm/php-fpm.conf
