@@ -53,7 +53,7 @@ RUN ln -s /usr/local/instantclient/sqlplus /usr/bin/sqlplus
 RUN echo /usr/local/instantclient_12_1 > /etc/ld.so.conf.d/oracle-instantclient.conf
 RUN ldconfig
 
-RUN apt-get install -y php-dev php-pear build-essential libaio1
+RUN apt-get install -y build-essential libaio1
 RUN pecl channel-update pecl.php.net
 RUN echo 'instantclient,/usr/local/instantclient' | pecl install oci8
 RUN apt-get clean -y
