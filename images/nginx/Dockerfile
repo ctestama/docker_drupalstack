@@ -6,8 +6,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y
 RUN apt-get install -y \
   vim \
-  zip \
-  unzip \
   wget \
   php-fpm \
   php-mysql \
@@ -20,6 +18,7 @@ RUN apt-get install -y \
   php-ldap \
   php-cli \
   git \
+  zip \
   unzip \
   nginx \
   openssh-server \
