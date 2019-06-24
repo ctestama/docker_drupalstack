@@ -4,7 +4,6 @@ services:
     build: images/nginx
     ports:
       - "80:80"
-      - "9000:9000"
       - "9099:22"
     links:
       - mariadb:mariadb
