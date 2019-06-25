@@ -17,6 +17,7 @@ RUN apt-get install -y \
   php-pear \
   php-ldap \
   php-cli \
+  mysql-client \
   git \
   zip \
   unzip \
@@ -59,7 +60,7 @@ RUN apt-get clean -y
 
 #Install Composer and Drush
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer global require drush/drush
+RUN composer global require drush/drush:8
 
 # Add configuration filess
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
