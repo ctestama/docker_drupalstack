@@ -17,6 +17,7 @@ RUN apt-get install -y \
   php-pear \
   php-ldap \
   php-cli \
+  php-mbstring \
   mysql-client \
   git \
   zip \

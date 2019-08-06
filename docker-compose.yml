@@ -10,19 +10,19 @@ services:
       - memcached:memcached
       - redis:redis
       - node:node
-      # - selenium_server:selenium_server
+      - selenium_server:selenium_server
     volumes:
       - ./www:/var/www:delegated
       - ./sites:/etc/nginx/sites-enabled:delegated
       - ./php:/etc/php/7.2/fpm:delegated
 
-  #selenium_server:
-  #  image: selenium/standalone-chrome-debug:2.53.1
-  #  ports:
-  #    - "4444:4444"
-  #    - "5900:5900"
-  #  environment:
-  #    HUB_ENV_no_proxy:
+  selenium_server:
+    image: selenium/standalone-chrome-debug:2.53.1
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+    environment:
+      HUB_ENV_no_proxy:
   # Uncomment lines to run selenium_server
   # If trouble starting up, see issue:  https://github.com/SeleniumHQ/docker-selenium/issues/91
 
