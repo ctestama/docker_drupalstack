@@ -5,24 +5,27 @@ services:
     ports:
       - "80:80"
       - "9099:22"
-    links:
-      - mariadb:mariadb
-      - memcached:memcached
-      - redis:redis
-      - node:node
-      - selenium_server:selenium_server
     volumes:
       - ./www:/var/www:delegated
       - ./sites:/etc/nginx/sites-enabled:delegated
       - ./php:/etc/php/7.2/fpm:delegated
+    networks:
+      default:
+        aliases:
+          - webspark.d
 
   selenium_server:
     image: selenium/standalone-chrome-debug:2.53.1
     ports:
       - "4444:4444"
       - "5900:5900"
+    shm_size: 2G
     environment:
       HUB_ENV_no_proxy:
+    networks:
+      default:
+        aliases:
+          - selenium_server
   # Uncomment lines to run selenium_server
   # If trouble starting up, see issue:  https://github.com/SeleniumHQ/docker-selenium/issues/91
 
@@ -37,11 +40,19 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_PASSWORD: password
       MYSQL_USER: admin
+    networks:
+      default:
+        aliases:
+          - mariadb
 
   memcached:
     build: images/memcached
     ports:
       - "11211:11211"
+    networks:
+      default:
+        aliases:
+          - memcached
 
   redis:
     image: tutum/redis
@@ -49,6 +60,10 @@ services:
       - "6379:6379"
     environment:
       REDIS_PASS: password
+    networks:
+      default:
+        aliases:
+          - redis
 
   node:
     image: "node:latest"
@@ -63,3 +78,7 @@ services:
       - "3000:3000"
       - "5000:5000"
     command: ['npm', 'start:dev']
+    networks:
+      default:
+        aliases:
+          - node
