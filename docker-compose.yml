@@ -26,16 +26,11 @@ services:
       default:
         aliases:
           - selenium_server
-  # Uncomment lines to run selenium_server
-  # If trouble starting up, see issue:  https://github.com/SeleniumHQ/docker-selenium/issues/91
 
   mariadb:
     image: mariadb:latest
     ports:
       - "3306:3306"
-    #volumes:
-    #  - ./mysql/mysql:/var/lib/mysql
-    #  - ./mysql/conf.d:/etc/mysql/conf.d
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_PASSWORD: password
@@ -65,20 +60,21 @@ services:
         aliases:
           - redis
 
-  node:
-    image: "node:latest"
-    user: "node"
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - ./node/unity:/home/node/app:delegated
-    ports:
-      - "8081:8081"
-      - "3000:3000"
-      - "5000:5000"
-    command: ['npm', 'start:dev']
-    networks:
-      default:
-        aliases:
-          - node
+  # Uncomment to run Node container
+  #node:
+  #  image: "node:latest"
+  #  user: "node"
+  #  working_dir: /home/node/app
+  #  environment:
+  #    - NODE_ENV=development
+  #  volumes:
+  #    - ./node:/home/node/app:delegated
+  #  ports:
+  #    - "8081:8081"
+  #    - "3000:3000"
+  #    - "5000:5000"
+  #  command: ['npm', 'start:dev']
+  #  networks:
+  #    default:
+  #      aliases:
+  #        - node
