@@ -1,4 +1,4 @@
-# Docker DrupalStack
+# Dstack
 
 A comprehensive local development environment for Drupal.
 
@@ -7,7 +7,7 @@ To Use:
 
 Mac OSX
 
-1. Install Docker for Mac or docker-machine
+1. Install Docker for Mac
 2. cd into the project root and run 'docker-compose up'
 
 Linux
@@ -23,7 +23,7 @@ Setting up a local Drupal site installation:
 3. Add an entry to the /etc/hosts file of your host machine for the custom host name you chose in step 2. An entry for sitename.dev, for example:
 
 ```
-0.0.0.0 sitename.dev   
+0.0.0.0 sitename.d   
 ```
 
 4. Create a database for the site 
@@ -43,7 +43,7 @@ $databases = array (
       'database' => 'webspark',
       'username' => 'root',
       'password' => 'password',
-      'host' => 'mariadb_1',
+      'host' => 'mariadb',
       'port' => '',
       'driver' => 'mysql',
       'prefix' => '',
