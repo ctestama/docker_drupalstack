@@ -1,13 +1,13 @@
-# Docker DrupalStack
+# Dstack
 
-A comprehensive local development environment for Drupal.
+A Docker-powered development environment optimized for Drupal sites.
 
 To Use:
 -------
 
 Mac OSX
 
-1. Install Docker for Mac or docker-machine
+1. Install Docker for Mac
 2. cd into the project root and run 'docker-compose up'
 
 Linux
@@ -20,10 +20,10 @@ Setting up a local Drupal site installation:
 
 1. Clone the site into the www directory
 2. Create a .vhost file for it in the sites directory. An easy way to do this is to copy the default.vhost file, rename it, then modify the 'server_name' directive to reflect a custom hostname of your choosing (e.g sitename.dev). Also, modify the 'root' directive to point to the directory of the site you cloned in step 1.
-3. Add an entry to the /etc/hosts file of your host machine for the custom host name you chose in step 2. An entry for sitename.dev, for example:
+3. Add an entry to the /etc/hosts file of your host machine for the custom host name you chose in step 2. For example:
 
 ```
-0.0.0.0 sitename.dev   
+0.0.0.0 sitename.d   
 ```
 
 4. Create a database for the site 
@@ -43,7 +43,7 @@ $databases = array (
       'database' => 'webspark',
       'username' => 'root',
       'password' => 'password',
-      'host' => 'mariadb_1',
+      'host' => 'mariadb',
       'port' => '',
       'driver' => 'mysql',
       'prefix' => '',
@@ -75,21 +75,6 @@ alias dssh='docker exec -it $DWEB bash'
 #ssh into the selenium container
 alias dselssh='docker exec -it $DSEL bash'
 
-# add entry to container host file
-# arg 1 - container name
-# arg 2 - ip address
-# arg 3 - hostname
-function add_chost() {
-  docker exec $1 /bin/sh -c "echo \"$2 $3\" >> /etc/hosts"
-}
-
-# returns the ip address of the container
-# arg 1 - container name
-function get_cip() {
-  docker exec $1 hostname -i;
-}
-```
-
 ## What's inside
 
 * [Nginx](http://nginx.org/)
@@ -97,14 +82,6 @@ function get_cip() {
 * [PHP-FPM](http://php-fpm.org/)
 * [Memcached](http://memcached.org/)
 * [Redis](http://redis.io/)
-
-### Requirements
-
-* [Docker](https://docker.com/)
-* [Docker Compose](http://docs.docker.com/compose/)
-
-
-
 
 ---
 Licensed under the terms of the [MIT License](LICENSE.md).
