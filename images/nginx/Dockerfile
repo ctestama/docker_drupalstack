@@ -1,9 +1,10 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install packages
 RUN apt-get update -y
+
+# Install packages
 RUN apt-get install -y \
   vim \
   wget \
@@ -26,18 +27,17 @@ RUN apt-get install -y \
   openssh-server \
   rsync \
   supervisor \
-  curl
-
-
-# installs add-apt-repository
-RUN apt-get install software-properties-common -y
-RUN apt-get update -y
+  curl \
+  software-properties-common \
+  build-essential \
+  python \
+  libglib2.0-dev \
+  libaio1
 
 # Create required directories
 RUN mkdir -p /var/log/supervisor
 RUN mkdir -p /etc/nginx
 RUN mkdir -p /var/run/php
-
 
 # Install Oracle instantclient  ###
 ADD oracle/instantclient-basic-linux.x64-12.1.0.2.0.zip /tmp/instantclient-basic-linux.x64-12.1.0.2.0.zip
@@ -54,7 +54,6 @@ RUN ln -s /usr/local/instantclient/sqlplus /usr/bin/sqlplus
 RUN echo /usr/local/instantclient_12_1 > /etc/ld.so.conf.d/oracle-instantclient.conf
 RUN ldconfig
 
-RUN apt-get install -y build-essential libaio1
 RUN pecl channel-update pecl.php.net
 RUN echo 'instantclient,/usr/local/instantclient' | pecl install oci8
 RUN apt-get clean -y
@@ -65,22 +64,23 @@ RUN composer global require drush/drush:8
 
 # Add configuration filess
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD php.ini /etc/php/7.2/fpm/conf.d/40-custom.ini
+ADD php.ini /etc/php/7.4/fpm/conf.d/40-custom.ini
 ADD startup.sh /opt/startup.sh
 ADD .bashrc /root/.bashrc
 
 # For supervisor, don't daemonize php-fpm
-RUN sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php/7.2/fpm/php-fpm.conf
+RUN sed -i 's/;daemonize = yes/daemonize = no/g' /etc/php/7.4/fpm/php-fpm.conf
 
-# Copy the default php-fpm configs to temp directory, so that we can 
-# copy them back after mounting the ./php directory
-RUN cp -r /etc/php/7.2/fpm /tmp/fpm
+# Copy the default php-fpm configs to temp directory, then copy 
+# them back after mounting the ./php directory
+RUN cp -r /etc/php/7.4/fpm /tmp/fpm
+
 
 # Expose volumes
-VOLUME ["/etc/php/7.2/fpm", "/var/www", "/etc/nginx/sites-enabled"]
+VOLUME ["/etc/php/7.4/fpm", "/var/www", "/etc/nginx/sites-enabled"]
 
 # Needed for supervisor to startup
-RUN service php7.2-fpm start
+RUN service php7.4-fpm start
 
 # Run our startup script
 CMD ["/bin/bash", "/opt/startup.sh"]
