@@ -8,24 +8,24 @@ services:
     volumes:
       - ./www:/var/www:delegated
       - ./sites:/etc/nginx/sites-enabled:delegated
-      - ./php:/etc/php/7.2/fpm:delegated
+      - ./php:/etc/php/7.4/fpm:delegated
     networks:
       default:
         aliases:
           - webspark.d
 
-  selenium_server:
-    image: selenium/standalone-chrome-debug:2.53.1
-    ports:
-      - "4444:4444"
-      - "5900:5900"
-    shm_size: 2G
-    environment:
-      HUB_ENV_no_proxy:
-    networks:
-      default:
-        aliases:
-          - selenium_server
+  #selenium_server:
+  #  image: selenium/standalone-chrome-debug:3.141.59
+  #  ports:
+  #    - "4444:4444"
+  #    - "5900:5900"
+  #  shm_size: 2G
+  #  environment:
+  #    HUB_ENV_no_proxy:
+  #  networks:
+  #    default:
+  #      aliases:
+  #         - selenium_server
 
   mariadb:
     image: mariadb:latest
@@ -61,20 +61,20 @@ services:
           - redis
 
   # Uncomment to run Node container
-  #node:
-  #  image: "node:latest"
-  #  user: "node"
-  #  working_dir: /home/node/app
-  #  environment:
-  #    - NODE_ENV=development
-  #  volumes:
-  #    - ./node:/home/node/app:delegated
-  #  ports:
-  #    - "8081:8081"
-  #    - "3000:3000"
-  #    - "5000:5000"
-  #  command: ['npm', 'start:dev']
-  #  networks:
-  #    default:
-  #      aliases:
-  #        - node
+  node:
+    image: "node:12"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./node/unity:/home/node/app:delegated
+    ports:
+      - "8081:8081"
+      - "3000:3000"
+      - "5000:5000"
+    command: ['yarn', 'start']
+    networks:
+      default:
+        aliases:
+        - node
